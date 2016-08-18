@@ -42,7 +42,7 @@ public class transWave {
         modTauL= tauL.getMag();
         this.Vplus=Vplus;
         Vmax=Vplus*(1+modTauL);Vmin=Vplus*(1-modTauL);this.width=w;envelop=new doubleHash();
-        
+        controller cooo =new controller();
     }
     
     public void analsis(){
@@ -126,6 +126,148 @@ public class transWave {
         }
         return enve;
         
+    }
+    
+    public class controller extends JFrame{
+        
+        JPanel p;
+    
+        //variables to get from user 
+        /*
+        
+        freqency;
+        Vplus;
+        Zl;
+        L C
+        Zo;
+        Lembda
+        
+        */
+        public controller(){
+            super("Control Panel");this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            p = new JPanel(new GridLayout(0,2,10,10));
+            addComponents();
+            
+            this.getContentPane().add(p);
+            pack();this.setVisible(true);this.setLocation(500,500);
+        }
+    
+        public void addComponents(){
+            label Lfreq = new label("Frequency");
+            label LVplus  = new label("V+");
+            label LZl  = new label("Load Impedence");
+            label LL = new label("Inductance");
+            label LC =new label("Capacitance");
+            label LZo = new label("Characteristic Impedence");
+            label Llembda = new label("Wavelength");
+            
+            JTextField Tfreq =new JTextField();
+            Tfreq.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char c=e.getKeyChar();
+                    if(c==KeyEvent.VK_ENTER && Tfreq.getText().length()>0){
+                        omega = 2*Math.PI*Double.parseDouble(Tfreq.getText());
+                    }
+                    else if(!(Character.isDigit(c)|| c=='.' || c==KeyEvent.VK_DELETE||c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_ENTER)){
+                        Toolkit.getDefaultToolkit().beep();
+                        e.consume();
+                    }
+                }
+                @Override
+                public void keyPressed(KeyEvent e) {}
+
+                @Override
+                public void keyReleased(KeyEvent e) {}
+            });
+            
+            JTextField TVplus = new JTextField();
+            TVplus.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char c=e.getKeyChar();
+                    if(c==KeyEvent.VK_ENTER && TVplus.getText().length()>0){
+                        if(Vplus>Double.parseDouble(TVplus.getText()))
+                            envelop.clear();
+                        Vplus = Double.parseDouble(TVplus.getText());
+                    }
+                    else if(!(Character.isDigit(c)|| c=='.' || c==KeyEvent.VK_DELETE||c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_ENTER)){
+                        Toolkit.getDefaultToolkit().beep();
+                        e.consume();
+                    }
+                }
+                @Override
+                public void keyPressed(KeyEvent e) {}
+
+                @Override
+                public void keyReleased(KeyEvent e) {}
+            });
+            
+            
+            JTextField TZl = new JTextField();
+            TZl.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char c=e.getKeyChar();
+                    if(c==KeyEvent.VK_ENTER && TZl.getText().length()>0){
+                        try{
+                            String txt = TZl.getText();double r=0,imag=0;
+                            int indexPos=txt.indexOf('+');
+                            int indexNeg=txt.indexOf('-');
+                            if(indexPos == -1 && indexNeg == -1){
+                                r = Double.parseDouble(txt);imag=0;
+                            }
+                            else if(indexPos!=-1 || indexNeg !=-1){
+                                int indexI = txt.indexOf('i');
+                                if(indexPos != -1){
+                                    r = Double.parseDouble(txt.substring(0,indexPos));
+                                    if(indexI == txt.length()-1)
+                                        imag = Double.parseDouble(txt.substring(indexPos+1,txt.length()-1));        
+                                    else
+                                        imag = Double.parseDouble(txt.substring(indexI+1));
+                                }else if(indexNeg != -1){
+                                    r = Double.parseDouble(txt.substring(0,indexNeg));
+                                    if(indexI == txt.length()-1)
+                                        imag = Double.parseDouble(txt.substring(indexNeg+1,txt.length()-1));        
+                                    else
+                                        imag = Double.parseDouble(txt.substring(indexI+1));
+                                }
+                            }
+                            System.out.println(r+"\t"+imag);
+                            envelop.clear();
+                            Zl = new complex(r, imag);
+                            tauL = (Zl.sub(new complex(Zo, 0))).divide((Zl.add(new complex(Zo, 0))));
+                            phi = tauL.getAngle();
+                            modTauL= tauL.getMag();
+                        }catch(Exception exp){
+                            System.out.println("Error...Wrong Input \n"+TZl.getText()+"\n");
+                            exp.printStackTrace();
+                        }
+                    }
+                    else if(!(Character.isDigit(c)|| c=='.'||c=='+'|| c=='i'||c=='-' || c==KeyEvent.VK_DELETE||c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_ENTER)){
+                        Toolkit.getDefaultToolkit().beep();
+                        e.consume();
+                    }
+                }
+                @Override
+                public void keyPressed(KeyEvent e) {}
+
+                @Override
+                public void keyReleased(KeyEvent e) {}
+            });
+            
+            
+            p.add(Lfreq);p.add(Tfreq);p.add(LVplus);p.add(TVplus);
+            p.add(LZl); p.add(TZl);
+        }
+    }
+    
+    public class label extends JLabel{
+        public label(String s){
+            super(s);
+            this.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 13));
+            this.setHorizontalAlignment(JLabel.CENTER);
+        }
     }
     
     
