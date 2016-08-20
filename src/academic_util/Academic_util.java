@@ -17,13 +17,14 @@ public class Academic_util {
     public static void main(String[] args) {
 //        analog_Exp1 a=new analog_Exp1();
 //        a.withoutCE();
-        waveTransmission w =new waveTransmission();
+//        waveTransmission w =new waveTransmission();
 //          analog_Exp2 a2= new analog_Exp2();
 //          a2.cascadeCircuit();
 //          a2.emitterFollower();
 //        doubleHash h=new doubleHash();h.put(2,4);h.put(3,9);
 //        System.out.println(h.containsKey(4));
-         
+         analog_Exp3 a=new analog_Exp3();
+         a.darlington();
     }
     
 }
