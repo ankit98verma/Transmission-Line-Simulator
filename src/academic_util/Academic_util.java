@@ -23,8 +23,10 @@ public class Academic_util {
 //          a2.emitterFollower();
 //        doubleHash h=new doubleHash();h.put(2,4);h.put(3,9);
 //        System.out.println(h.containsKey(4));
-         analog_Exp3 a=new analog_Exp3();
-         a.darlington();
+//         analog_Exp3 a=new analog_Exp3();
+//         a.darlington();
+          analog_Exp4 a =new analog_Exp4();
+          a.withoutCE();
     }
     
 }
