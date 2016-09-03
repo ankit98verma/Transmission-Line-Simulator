@@ -11,7 +11,7 @@ import java.io.FileReader;
 public class analog_Exp4 {
 
     private double Vin=0.1;
-    public void withCE(){
+    public void withCS(){
         try{
             BufferedReader br =new BufferedReader(new FileReader(new File("jfet_freq_with_CS.txt")));
             String s = "";int i=0;
@@ -30,7 +30,7 @@ public class analog_Exp4 {
             System.out.println("Cant Initialize BufferedReader");
         }
     }
-    public void withoutCE(){
+    public void withoutCS(){
         try{
             BufferedReader br =new BufferedReader(new FileReader(new File("jfet_freq_without_CS.txt")));
             String s = "";int i=0;

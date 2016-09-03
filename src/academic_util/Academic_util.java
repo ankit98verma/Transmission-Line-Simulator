@@ -25,8 +25,10 @@ public class Academic_util {
 //        System.out.println(h.containsKey(4));
 //         analog_Exp3 a=new analog_Exp3();
 //         a.darlington();
-          analog_Exp4 a =new analog_Exp4();
-          a.withoutCE();
+//          analog_Exp4 a =new analog_Exp4();
+//          a.withoutCS();
+           analog_Exp5 a=new analog_Exp5();
+           a.sourceFollower();
     }
     
 }
