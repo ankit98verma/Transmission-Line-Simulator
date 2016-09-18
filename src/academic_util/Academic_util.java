@@ -17,8 +17,8 @@ public class Academic_util {
     public static void main(String[] args) {
 //        analog_Exp1 a=new analog_Exp1();
 //        a.withoutCE();
-//        waveTransmission w =new waveTransmission();
-//          analog_Exp2 a2= new analog_Exp2();
+        waveTransmission w =new waveTransmission();
+          analog_Exp2 a2= new analog_Exp2();
 //          a2.cascadeCircuit();
 //          a2.emitterFollower();
 //        doubleHash h=new doubleHash();h.put(2,4);h.put(3,9);
@@ -27,8 +27,8 @@ public class Academic_util {
 //         a.darlington();
 //          analog_Exp4 a =new analog_Exp4();
 //          a.withoutCS();
-           analog_Exp5 a=new analog_Exp5();
-           a.sourceFollower();
+//           analog_Exp5 a=new analog_Exp5();
+//           a.sourceFollower();
     }
     
 }

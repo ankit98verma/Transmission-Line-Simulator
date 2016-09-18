@@ -135,9 +135,9 @@ public class transWave {
         //variables to get from user 
         /*
         
-        freqency;
-        Vplus;
-        Zl;
+        freqency;   done
+        Vplus;  done
+        Zl;     done
         L C
         Zo;
         Lembda
